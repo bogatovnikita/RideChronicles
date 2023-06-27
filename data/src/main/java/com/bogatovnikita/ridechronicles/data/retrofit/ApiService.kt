@@ -1,8 +1,8 @@
 package com.bogatovnikita.ridechronicles.data.retrofit
 
+import com.bogatovnikita.ridechronicles.data.retrofit.models.Car
 import com.bogatovnikita.ridechronicles.data.retrofit.models.CarForList
-import com.bogatovnikita.ridechronicles.domain.models.Car
-import com.bogatovnikita.ridechronicles.domain.models.Post
+import com.bogatovnikita.ridechronicles.data.retrofit.models.Post
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
