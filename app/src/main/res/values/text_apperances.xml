@@ -12,4 +12,8 @@
     <style name="Text.Casual.24">
         <item name="android:textSize">@dimen/_22ssp</item>
     </style>
+
+    <style name="Text.Casual.14">
+        <item name="android:textSize">@dimen/_14ssp</item>
+    </style>
 </resources>
