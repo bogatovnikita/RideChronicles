@@ -40,10 +40,12 @@ class ListOfCarsFragment : Fragment(R.layout.fragment_list_of_cars) {
 
     private fun renderState(state: ListOfCarsState) {
         loaderIsEnable(state)
+        binding.numberPage.text = state.page.toString()
         if (state.isLoaded) {
             adapter.setData(state.listCars)
         }
         if (viewModel.screenState.value.page == 1) binding.prevPage.isVisible = false
+        if (viewModel.screenState.value.page == 22) binding.nextPage.isVisible = false
     }
 
     private fun loaderIsEnable(state: ListOfCarsState) {
