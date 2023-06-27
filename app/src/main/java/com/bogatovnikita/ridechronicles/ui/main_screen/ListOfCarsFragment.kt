@@ -25,8 +25,9 @@ class ListOfCarsFragment : Fragment(R.layout.fragment_list_of_cars) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getListOfCar(viewModel.screenState.value.page)
-        initRecyclerView()
         initObserver()
+        initRecyclerView()
+        initClickListener()
     }
 
     private fun initObserver() {
@@ -39,12 +40,16 @@ class ListOfCarsFragment : Fragment(R.layout.fragment_list_of_cars) {
 
     private fun renderState(state: ListOfCarsState) {
         loaderIsEnable(state)
-        adapter.submitList(state.listCars)
+        if (state.isLoaded) {
+            adapter.submitList(state.listCars)
+        }
+        if (viewModel.screenState.value.page == 1) binding.prevPage.isVisible = false
     }
 
     private fun loaderIsEnable(state: ListOfCarsState) {
         binding.recyclerView.isVisible = state.isLoaded
         binding.loader.isVisible = !state.isLoaded
+        binding.buttonsPageGroup.isVisible = state.isLoaded
     }
 
     private fun initRecyclerView() {
@@ -53,6 +58,16 @@ class ListOfCarsFragment : Fragment(R.layout.fragment_list_of_cars) {
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
+    }
+
+    private fun initClickListener() {
+        binding.nextPage.setOnClickListener {
+            viewModel.getListOfCar(viewModel.screenState.value.page + 1)
+        }
+        binding.prevPage.setOnClickListener {
+            viewModel.getListOfCar(viewModel.screenState.value.page - 1)
+
+        }
     }
 
 }

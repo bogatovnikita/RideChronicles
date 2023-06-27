@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Ride Chronicles</string>
+    <string name="prev_page">prev\npage</string>
+    <string name="next_page">next\npage</string>
 </resources>
