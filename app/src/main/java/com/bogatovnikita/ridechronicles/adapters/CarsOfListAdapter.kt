@@ -11,7 +11,15 @@ import com.bogatovnikita.ridechronicles.models.CarForList
 import com.bumptech.glide.Glide
 
 class CarsOfListAdapter(private val onClick: (Long) -> Unit) :
-    ListAdapter<CarForList, CarsOfListAdapter.CarsOfListViewHolder>(ItemCallback) {
+    RecyclerView.Adapter<CarsOfListAdapter.CarsOfListViewHolder>() {
+
+    private val dataList: MutableList<CarForList> = mutableListOf()
+
+    fun setData(dataList: List<CarForList>) {
+        this.dataList.clear()
+        this.dataList.addAll(dataList)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarsOfListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -20,11 +28,13 @@ class CarsOfListAdapter(private val onClick: (Long) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: CarsOfListViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(dataList[position])
         holder.itemView.setOnClickListener {
-            onClick(getItem(position).id)
+            onClick(dataList[position].id)
         }
     }
+
+    override fun getItemCount(): Int = dataList.size
 
     class CarsOfListViewHolder(private val binding: ItemListOfCarBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -38,14 +48,4 @@ class CarsOfListAdapter(private val onClick: (Long) -> Unit) :
                 .into(binding.picture)
         }
     }
-
-    object ItemCallback : DiffUtil.ItemCallback<CarForList>() {
-        override fun areItemsTheSame(oldItem: CarForList, newItem: CarForList) =
-            oldItem.id == newItem.id
-
-        override fun areContentsTheSame(oldItem: CarForList, newItem: CarForList) =
-            oldItem == newItem
-
-    }
-
 }

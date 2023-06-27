@@ -41,7 +41,7 @@ class ListOfCarsFragment : Fragment(R.layout.fragment_list_of_cars) {
     private fun renderState(state: ListOfCarsState) {
         loaderIsEnable(state)
         if (state.isLoaded) {
-            adapter.submitList(state.listCars)
+            adapter.setData(state.listCars)
         }
         if (viewModel.screenState.value.page == 1) binding.prevPage.isVisible = false
     }

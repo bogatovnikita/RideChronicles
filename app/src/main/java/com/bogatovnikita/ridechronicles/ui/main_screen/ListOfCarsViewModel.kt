@@ -34,9 +34,7 @@ class ListOfCarsViewModel @Inject constructor(private val getListOfCar: GetListO
     private fun isNotLoaded() {
         updateState {
             it.copy(
-                isLoaded = false,
-                listCars = emptyList()
-            )
+                isLoaded = false)
         }
     }
 }
