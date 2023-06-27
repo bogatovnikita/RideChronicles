@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.bogatovnikita.ridechronicles.ui.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_listOfCarsFragment"
+            app:destination="@id/listOfCarsFragment"
+            app:popUpTo="@id/main_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/listOfCarsFragment"
+        android:name="com.bogatovnikita.ridechronicles.ui.main_screen.ListOfCarsFragment"
+        android:label="ListOfCarsFragment"
+        tools:layout="@layout/fragment_list_of_cars">
+        <action
+            android:id="@+id/action_listOfCarsFragment_to_detailsCarFragment"
+            app:destination="@id/detailsCarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsCarFragment"
+        android:name="com.bogatovnikita.ridechronicles.ui.details_screen.DetailsCarFragment"
+        android:label="DetailsCarFragment"
+        tools:layout="@layout/fragment_details_car" />
+</navigation>
