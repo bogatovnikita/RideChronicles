@@ -1,4 +1,4 @@
-package com.bogatovnikita.ridechronicles.domain
+package com.bogatovnikita.ridechronicles.domain.repository
 
 import com.bogatovnikita.ridechronicles.domain.models.Car
 
