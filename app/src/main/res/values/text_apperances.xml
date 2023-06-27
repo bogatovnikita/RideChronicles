@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Text">
+        <item name="color">@color/main_color_text</item>
+    </style>
+
+    <style name="Text.Casual">
+        <item name="android:fontFamily">casual</item>
+    </style>
+
+    <style name="Text.Casual.24">
+        <item name="android:textSize">@dimen/_22ssp</item>
+    </style>
+</resources>
