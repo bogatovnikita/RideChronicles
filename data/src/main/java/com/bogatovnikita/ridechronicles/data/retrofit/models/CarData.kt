@@ -2,7 +2,7 @@ package com.bogatovnikita.ridechronicles.data.retrofit.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Car (
+data class CarData(
     val id: Long,
 
     @SerializedName("for_sale")
@@ -67,7 +67,7 @@ data class Car (
     val isModerated: Boolean
 )
 
-data class Image (
+data class Image(
     val id: Long,
 
     @SerializedName("is_primary")
@@ -84,7 +84,7 @@ data class Image (
     val image100: String
 )
 
-data class User (
+data class User(
     val id: Long,
     val username: String,
     val email: String,
@@ -98,7 +98,12 @@ data class User (
     val mainAutoName: String
 )
 
-data class Avatar (
+data class Avatar(
     val path: String,
     val url: String
+)
+
+data class CarDataResponse(
+    val car: CarData,
+    val user: User
 )

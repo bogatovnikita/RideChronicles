@@ -39,7 +39,7 @@
         android:label="DetailsCarFragment"
         tools:layout="@layout/fragment_details_car" >
         <argument
-            android:name="CarId"
+            android:name="carId"
             app:argType="long" />
     </fragment>
 </navigation>
