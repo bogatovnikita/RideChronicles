@@ -3,7 +3,10 @@ package com.bogatovnikita.ridechronicles.models
 data class PostModel(
     val id: Long = 0L,
     val text: String = "",
-    val author: User
+    val author: User,
+    val date: String = "",
+    val likeCount: Long = 0L,
+    val commentCount: Long = 0L
 )
 
 data class User(
