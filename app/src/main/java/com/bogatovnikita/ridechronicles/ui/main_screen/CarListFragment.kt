@@ -10,17 +10,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bogatovnikita.ridechronicles.R
-import com.bogatovnikita.ridechronicles.adapters.CarsOfListAdapter
+import com.bogatovnikita.ridechronicles.adapters.CarListAdapter
 import com.bogatovnikita.ridechronicles.databinding.FragmentListOfCarsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ListOfCarsFragment : Fragment(R.layout.fragment_list_of_cars) {
+class CarListFragment : Fragment(R.layout.fragment_list_of_cars) {
 
     private val binding: FragmentListOfCarsBinding by viewBinding()
-    private val viewModel: ListOfCarsViewModel by viewModels()
-    private lateinit var adapter: CarsOfListAdapter
+    private val viewModel: CarListViewModel by viewModels()
+    private lateinit var adapter: CarListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,7 +38,7 @@ class ListOfCarsFragment : Fragment(R.layout.fragment_list_of_cars) {
         }
     }
 
-    private fun renderState(state: ListOfCarsState) {
+    private fun renderState(state: CarListState) {
         loaderIsEnable(state)
         binding.numberPage.text = state.page.toString()
         if (state.isLoaded) {
@@ -48,14 +48,14 @@ class ListOfCarsFragment : Fragment(R.layout.fragment_list_of_cars) {
         if (viewModel.screenState.value.page == 22) binding.nextPage.isVisible = false
     }
 
-    private fun loaderIsEnable(state: ListOfCarsState) {
+    private fun loaderIsEnable(state: CarListState) {
         binding.recyclerView.isVisible = state.isLoaded
         binding.loader.isVisible = !state.isLoaded
         binding.buttonsPageGroup.isVisible = state.isLoaded
     }
 
     private fun initRecyclerView() {
-        adapter = CarsOfListAdapter {
+        adapter = CarListAdapter {
             Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())

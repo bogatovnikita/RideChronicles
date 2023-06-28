@@ -2,12 +2,12 @@ package com.bogatovnikita.ridechronicles.data.repository
 
 import com.bogatovnikita.ridechronicles.data.retrofit.ApiService
 import com.bogatovnikita.ridechronicles.domain.models.CarForList
-import com.bogatovnikita.ridechronicles.domain.repository.ListOfCarRepository
+import com.bogatovnikita.ridechronicles.domain.repository.ListOfCarsRepository
 import retrofit2.awaitResponse
 import javax.inject.Inject
 
-class ListOfCarRepositoryImpl @Inject constructor(private val apiService: ApiService) :
-    ListOfCarRepository {
+class ListOfCarsRepositoryImpl @Inject constructor(private val apiService: ApiService) :
+    ListOfCarsRepository {
 
     override suspend fun getListOfCar(page: Int): List<CarForList> {
         val response = apiService.getListCars(page).awaitResponse()

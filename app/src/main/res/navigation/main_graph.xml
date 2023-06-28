@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/listOfCarsFragment"
-        android:name="com.bogatovnikita.ridechronicles.ui.main_screen.ListOfCarsFragment"
+        android:name="com.bogatovnikita.ridechronicles.ui.main_screen.CarListFragment"
         android:label="ListOfCarsFragment"
         tools:layout="@layout/fragment_list_of_cars">
         <action

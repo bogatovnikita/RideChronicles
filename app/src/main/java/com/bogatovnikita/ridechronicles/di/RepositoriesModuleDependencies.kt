@@ -1,9 +1,9 @@
 package com.bogatovnikita.ridechronicles.di
 
-import com.bogatovnikita.ridechronicles.data.repository.ListOfCarRepositoryImpl
+import com.bogatovnikita.ridechronicles.data.repository.ListOfCarsRepositoryImpl
 import com.bogatovnikita.ridechronicles.data.repository.ListOfPostsRepositoryImpl
 import com.bogatovnikita.ridechronicles.data.repository.SomeCarRepositoryImpl
-import com.bogatovnikita.ridechronicles.domain.repository.ListOfCarRepository
+import com.bogatovnikita.ridechronicles.domain.repository.ListOfCarsRepository
 import com.bogatovnikita.ridechronicles.domain.repository.ListOfPostsRepository
 import com.bogatovnikita.ridechronicles.domain.repository.SomeCarRepository
 import dagger.Binds
@@ -16,7 +16,7 @@ import dagger.hilt.components.SingletonComponent
 interface RepositoriesModuleDependencies {
 
     @Binds
-    fun bindListOfCarRepositoryToListOfCarRepositoryImpl(listOfCarRepository: ListOfCarRepositoryImpl): ListOfCarRepository
+    fun bindListOfCarRepositoryToListOfCarsRepositoryImpl(listOfCarRepository: ListOfCarsRepositoryImpl): ListOfCarsRepository
 
     @Binds
     fun bindListOfPostsRepositoryToListOfPostsRepositoryImpl(listOfPostsRepository: ListOfPostsRepositoryImpl): ListOfPostsRepository

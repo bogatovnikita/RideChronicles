@@ -3,14 +3,14 @@ package com.bogatovnikita.ridechronicles.ui.main_screen
 import androidx.lifecycle.viewModelScope
 import com.bogatovnikita.ridechronicles.base.BaseViewModel
 import com.bogatovnikita.ridechronicles.domain.usecase.GetListOfCar
-import com.bogatovnikita.ridechronicles.models.CarForList
+import com.bogatovnikita.ridechronicles.models.CarForListModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ListOfCarsViewModel @Inject constructor(private val getListOfCar: GetListOfCar) :
-    BaseViewModel<ListOfCarsState>(ListOfCarsState()) {
+class CarListViewModel @Inject constructor(private val getListOfCar: GetListOfCar) :
+    BaseViewModel<CarListState>(CarListState()) {
 
     fun getListOfCar(page: Int) {
         isNotLoaded()
@@ -18,7 +18,7 @@ class ListOfCarsViewModel @Inject constructor(private val getListOfCar: GetListO
             updateState {
                 it.copy(
                     listCars = getListOfCar.getListOfCar(page).map { item ->
-                        CarForList(
+                        CarForListModel(
                             id = item.id,
                             name = item.name,
                             urlPhoto = item.urlPhoto

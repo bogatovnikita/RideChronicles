@@ -2,32 +2,30 @@ package com.bogatovnikita.ridechronicles.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bogatovnikita.ridechronicles.R
 import com.bogatovnikita.ridechronicles.databinding.ItemListOfCarBinding
-import com.bogatovnikita.ridechronicles.models.CarForList
+import com.bogatovnikita.ridechronicles.models.CarForListModel
 import com.bumptech.glide.Glide
 
-class CarsOfListAdapter(private val onClick: (Long) -> Unit) :
-    RecyclerView.Adapter<CarsOfListAdapter.CarsOfListViewHolder>() {
+class CarListAdapter(private val onClick: (Long) -> Unit) :
+    RecyclerView.Adapter<CarListAdapter.CarListViewHolder>() {
 
-    private val dataList: MutableList<CarForList> = mutableListOf()
+    private val dataList: MutableList<CarForListModel> = mutableListOf()
 
-    fun setData(dataList: List<CarForList>) {
+    fun setData(dataList: List<CarForListModel>) {
         this.dataList.clear()
         this.dataList.addAll(dataList)
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarsOfListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemListOfCarBinding.inflate(inflater, parent, false)
-        return CarsOfListViewHolder(binding)
+        return CarListViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: CarsOfListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CarListViewHolder, position: Int) {
         holder.bind(dataList[position])
         holder.itemView.setOnClickListener {
             onClick(dataList[position].id)
@@ -36,10 +34,10 @@ class CarsOfListAdapter(private val onClick: (Long) -> Unit) :
 
     override fun getItemCount(): Int = dataList.size
 
-    class CarsOfListViewHolder(private val binding: ItemListOfCarBinding) :
+    class CarListViewHolder(private val binding: ItemListOfCarBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: CarForList) {
+        fun bind(item: CarForListModel) {
             binding.title.text = item.name
 
             Glide.with(itemView.context)
