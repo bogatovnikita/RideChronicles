@@ -47,7 +47,8 @@ class DetailsCarViewModel @Inject constructor(
                             ),
                             date = post.date,
                             likeCount = post.likeCount,
-                            commentCount = post.commentCount
+                            commentCount = post.commentCount,
+                            image = post.image
                         )
                     },
                     isLoaded = true

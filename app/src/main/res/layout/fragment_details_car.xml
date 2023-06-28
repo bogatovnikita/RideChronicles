@@ -83,6 +83,16 @@
                 app:progressMode="true"
                 app:selectedDotColor="@color/grey" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dots_indicator"
+                tools:itemCount="6"
+                tools:listitem="@layout/item_post" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

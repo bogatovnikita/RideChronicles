@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bogatovnikita.ridechronicles.R
+import com.bogatovnikita.ridechronicles.adapters.PostAdapter
 import com.bogatovnikita.ridechronicles.adapters.ViewPagerAdapter
 import com.bogatovnikita.ridechronicles.databinding.FragmentDetailsCarBinding
 import com.bumptech.glide.Glide
@@ -22,13 +24,15 @@ class DetailsCarFragment : Fragment(R.layout.fragment_details_car) {
     private val binding: FragmentDetailsCarBinding by viewBinding()
     private val args by navArgs<DetailsCarFragmentArgs>()
     private val viewModel: DetailsCarViewModel by viewModels()
+
     private lateinit var viewPagerAdapter: ViewPagerAdapter
+    private lateinit var postAdapter: PostAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.updateState(args.carId)
         initObserver()
-        initViewPagerAdapter()
+        initAdapters()
     }
 
     private fun initObserver() {
@@ -49,6 +53,8 @@ class DetailsCarFragment : Fragment(R.layout.fragment_details_car) {
                 state.listPosts.firstOrNull()!!.author.avatar.url
             )
             binding.userName.text = state.listPosts.firstOrNull()!!.author.username
+
+            postAdapter.setData(state.listPosts)
         }
 
     }
@@ -58,9 +64,14 @@ class DetailsCarFragment : Fragment(R.layout.fragment_details_car) {
         binding.loader.isVisible = !state.isLoaded
     }
 
-    private fun initViewPagerAdapter() {
+    private fun initAdapters() {
         viewPagerAdapter = ViewPagerAdapter()
         binding.viewPagerContainer.adapter = viewPagerAdapter
+
+        postAdapter = PostAdapter()
+        binding.recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerView.adapter = postAdapter
     }
 }
 
