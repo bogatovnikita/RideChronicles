@@ -37,5 +37,9 @@
         android:id="@+id/detailsCarFragment"
         android:name="com.bogatovnikita.ridechronicles.ui.details_screen.DetailsCarFragment"
         android:label="DetailsCarFragment"
-        tools:layout="@layout/fragment_details_car" />
+        tools:layout="@layout/fragment_details_car" >
+        <argument
+            android:name="CarId"
+            app:argType="long" />
+    </fragment>
 </navigation>
