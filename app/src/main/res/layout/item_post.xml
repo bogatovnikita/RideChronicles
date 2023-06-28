@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_4sdp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_250sdp"
+        android:background="@drawable/square_boarder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_margin="@dimen/_8sdp"
+        android:elevation="2dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="@id/card_view"
+        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintTop_toTopOf="@id/card_view"
+        tools:src="@drawable/picture_for_review" />
+
+    <TextView
+        android:id="@+id/date"
+        style="@style/Text.Casual.10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:elevation="2dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/card_view"
+        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@id/image"
+        tools:text="57:34:686 sg" />
+
+    <TextView
+        android:id="@+id/description"
+        style="@style/Text.Casual.10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_4sdp"
+        android:elevation="2dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        app:layout_constraintEnd_toEndOf="@id/card_view"
+        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@id/date"
+        tools:text="dfgjdfjkghdjkfghkdjfhgkdssdfsdffdfdjfhgkjdfhgkjdfhgkfjhdkjfghkdjfhgkjdfhgkjdfhgkjdhfgkjdfhgkjdfhgkjdfhgkdfjghdfjghdkjfgh" />
+
+    <ImageView
+        android:id="@+id/favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:elevation="2dp"
+        android:src="@drawable/baseline_favorite_24"
+        app:layout_constraintEnd_toStartOf="@id/favorite_count"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description" />
+
+    <TextView
+        android:id="@+id/favorite_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:elevation="2dp"
+        app:layout_constraintEnd_toStartOf="@id/comment"
+        app:layout_constraintStart_toEndOf="@id/favorite"
+        app:layout_constraintTop_toTopOf="@id/favorite"
+        tools:text="100" />
+
+    <ImageView
+        android:id="@+id/comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:elevation="2dp"
+        android:src="@drawable/baseline_comment_24"
+        app:layout_constraintEnd_toStartOf="@id/comment_count"
+        app:layout_constraintStart_toEndOf="@id/favorite_count"
+        app:layout_constraintTop_toTopOf="@id/favorite" />
+
+    <TextView
+        android:id="@+id/comment_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        app:layout_constraintEnd_toEndOf="@id/card_view"
+        app:layout_constraintStart_toEndOf="@id/comment"
+        app:layout_constraintTop_toTopOf="@id/favorite"
+        tools:text="100" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
