@@ -2,6 +2,7 @@ package com.bogatovnikita.ridechronicles.ui.details_screen
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -37,8 +38,16 @@ class DetailsCarFragment : Fragment(R.layout.fragment_details_car) {
     }
 
     private fun renderState(state: DetailsCarState) {
-        if (state.isLoaded) viewPagerAdapter.setData(state.someCar.listUrl)
+        loaderIsEnable(state)
+        if (state.isLoaded) {
+            viewPagerAdapter.setData(state.someCar.listUrl)
+            binding.dotsIndicator.attachTo(binding.viewPagerContainer)
+        }
+    }
 
+    private fun loaderIsEnable(state: DetailsCarState) {
+        binding.groupDontLoad.isVisible = state.isLoaded
+        binding.loader.isVisible = !state.isLoaded
     }
 
     private fun initViewPagerAdapter() {
