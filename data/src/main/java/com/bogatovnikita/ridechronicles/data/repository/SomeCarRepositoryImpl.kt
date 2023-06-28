@@ -15,18 +15,12 @@ class SomeCarRepositoryImpl
             val localCar = response.body()!!.car
             Car(
                 id = localCar.id,
-                brandName = localCar.brandName,
-                modelName = localCar.modelName,
-                year = localCar.year,
-                engineVolume = localCar.engineVolume,
+                name = localCar.name,
                 listUrl = localCar.images.map { it.url })
         } else {
             return Car(
                 id = 0,
-                brandName = "",
-                modelName = "",
-                year = 0,
-                engineVolume = "",
+                name = "",
                 listUrl = emptyList()
             )
         }
