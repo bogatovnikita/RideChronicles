@@ -2,11 +2,11 @@ package com.bogatovnikita.ridechronicles.ui.main_screen
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bogatovnikita.ridechronicles.R
@@ -56,7 +56,11 @@ class CarListFragment : Fragment(R.layout.fragment_list_of_cars) {
 
     private fun initRecyclerView() {
         adapter = CarListAdapter {
-            Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(
+                CarListFragmentDirections.actionListOfCarsFragmentToDetailsCarFragment(
+                    it
+                )
+            )
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
