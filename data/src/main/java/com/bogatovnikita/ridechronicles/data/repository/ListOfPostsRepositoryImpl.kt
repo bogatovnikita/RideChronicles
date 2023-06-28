@@ -21,7 +21,10 @@ class ListOfPostsRepositoryImpl @Inject constructor(private val apiService: ApiS
                         id = it.id,
                         username = it.author.username,
                         avatar = Avatar(url = it.author.avatar.url)
-                    )
+                    ),
+                    date = it.createdAt,
+                    commentCount = it.commentCount,
+                    likeCount = it.likeCount
                 )
             }
         } else {

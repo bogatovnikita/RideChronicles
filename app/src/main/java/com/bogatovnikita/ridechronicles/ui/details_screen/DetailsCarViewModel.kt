@@ -47,7 +47,10 @@ class DetailsCarViewModel @Inject constructor(
                                 id = post.author.id,
                                 username = post.author.username,
                                 avatar = Avatar(post.author.avatar.url)
-                            )
+                            ),
+                            date = post.date,
+                            likeCount = post.likeCount,
+                            commentCount = post.commentCount
                         )
                     },
                     isLoaded = true
