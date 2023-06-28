@@ -23,17 +23,26 @@ class DetailsCarViewModel @Inject constructor(
     fun updateState(id: Long) {
         isNotLoaded()
         viewModelScope.launch {
-            val getListOfPostsUseCase = async(Dispatchers.IO) {
-                return@async getListOfPosts.getListOfPosts(id)
-            }
-            val getSomeCarUseCase = async(Dispatchers.IO) {
-                return@async getSomeCar.getCar(id)
-            }
-            val getListOfPostsResult = getListOfPostsUseCase.await()
-            val getSomeCarResult = getSomeCarUseCase.await()
+            val getSomeCarResult = getSomeCar.getCar(id)
             updateState {
                 it.copy(
-                    listPosts = getListOfPostsResult.map { post ->
+                    someCar = CarModel(
+                        id = getSomeCarResult.id,
+                        brandName = getSomeCarResult.brandName,
+                        modelName = getSomeCarResult.modelName,
+                        year = getSomeCarResult.year,
+                        engineVolume = getSomeCarResult.engineVolume,
+                        listUrl = getSomeCarResult.listUrl
+                    ),
+                    isLoadedSomeCar = true
+                )
+            }
+        }
+
+        viewModelScope.launch {
+            updateState {
+                it.copy(
+                    listPosts = getListOfPosts.getListOfPosts(id).map { post ->
                         PostModel(
                             id = post.id,
                             text = post.text,
@@ -45,28 +54,18 @@ class DetailsCarViewModel @Inject constructor(
                                 )
                             )
                         )
-                    },
-                    someCar = CarModel(
-                        id = getSomeCarResult!!.id,
-                        brandName = getSomeCarResult.brandName,
-                        modelName = getSomeCarResult.modelName,
-                        year = getSomeCarResult.year,
-                        engineVolume = getSomeCarResult.engineVolume,
-                        listUrl = getSomeCarResult.listUrl
-                    ),
-                    isLoaded = true
+                    }, isLoadedPosts = true
                 )
             }
-
         }
     }
 
     private fun isNotLoaded() {
         updateState {
             it.copy(
-                isLoaded = false
+                isLoadedPosts = false,
+                isLoadedSomeCar = false
             )
         }
     }
-
 }
