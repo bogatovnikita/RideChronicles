@@ -2,7 +2,7 @@ package com.bogatovnikita.ridechronicles.data.retrofit.models
 
 import com.google.gson.annotations.SerializedName
 
-data class CarForList(
+data class CarForListData(
     val id: Long,
 
     @SerializedName("for_sale")

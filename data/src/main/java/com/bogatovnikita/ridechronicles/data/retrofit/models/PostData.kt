@@ -2,7 +2,7 @@ package com.bogatovnikita.ridechronicles.data.retrofit.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Post (
+data class PostData(
     val id: Long,
     val text: String,
 
@@ -17,4 +17,9 @@ data class Post (
 
     val img: String,
     val author: User
+)
+
+data class PostDataResponse(
+    val posts: List<PostData>,
+    val user: User
 )

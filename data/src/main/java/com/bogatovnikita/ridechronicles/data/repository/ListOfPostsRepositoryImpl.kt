@@ -13,12 +13,12 @@ class ListOfPostsRepositoryImpl @Inject constructor(private val apiService: ApiS
     override suspend fun getListOfPost(id: Long): List<Post> {
         val response = apiService.getListPost(id).awaitResponse()
         return if (response.isSuccessful && response.body() !== null) {
-            response.body()!!.map {
+            response.body()!!.posts.map {
                 Post(
                     id = it.id,
                     text = it.text,
                     author = User(
-                        id = it.author.id,
+                        id = it.id,
                         username = it.author.username,
                         avatar = Avatar(url = it.author.avatar.url)
                     )
