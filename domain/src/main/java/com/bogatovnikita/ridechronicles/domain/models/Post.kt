@@ -6,7 +6,8 @@ data class Post(
     val author: User,
     val date: String = "",
     val likeCount: Long = 0L,
-    val commentCount: Long = 0L
+    val commentCount: Long = 0L,
+    val image: String = ""
 )
 
 data class User(

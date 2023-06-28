@@ -24,7 +24,8 @@ class ListOfPostsRepositoryImpl @Inject constructor(private val apiService: ApiS
                     ),
                     date = it.createdAt,
                     commentCount = it.commentCount,
-                    likeCount = it.likeCount
+                    likeCount = it.likeCount,
+                    image = it.img
                 )
             }
         } else {
