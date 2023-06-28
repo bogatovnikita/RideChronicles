@@ -29,7 +29,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerHolder>(
         holder.bind(urlList[position])
     }
 
-    class ViewPagerHolder(val binding: ItemImageViewPagerBinding) :
+    class ViewPagerHolder(private val binding: ItemImageViewPagerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(url: String) {
             Glide.with(itemView.context)
