@@ -49,10 +49,14 @@ class DetailsCarFragment : Fragment(R.layout.fragment_details_car) {
             viewPagerAdapter.setData(state.someCar.listUrl)
             binding.dotsIndicator.attachTo(binding.viewPagerContainer)
             binding.headTitle.text = state.someCar.name
-            binding.userAvatar.loadImageFromUrl(
-                state.listPosts.firstOrNull()!!.author.avatar.url
-            )
-            binding.userName.text = state.listPosts.firstOrNull()!!.author.username
+            val avatar = state.listPosts.firstOrNull()?.author?.avatar?.url
+            if (avatar != null) {
+                binding.userAvatar.loadImageFromUrl(avatar)
+            } else {
+                binding.userAvatar.setImageResource(R.mipmap.ic_launcher_round)
+            }
+
+            binding.userName.text = state.listPosts.firstOrNull()?.author?.username ?: ""
 
             postAdapter.setData(state.listPosts)
         }
