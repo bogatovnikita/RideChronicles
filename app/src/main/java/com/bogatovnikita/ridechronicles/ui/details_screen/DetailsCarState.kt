@@ -8,10 +8,7 @@ data class DetailsCarState(
     val listPosts: List<PostModel> = emptyList(),
     val someCar: CarModel = CarModel(
         id = 0,
-        brandName = "",
-        modelName = "",
-        year = 0,
-        engineVolume = "",
+        name = "",
         listUrl = emptyList()
     )
 )

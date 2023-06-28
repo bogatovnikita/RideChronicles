@@ -33,10 +33,7 @@ class DetailsCarViewModel @Inject constructor(
                 it.copy(
                     someCar = CarModel(
                         id = getSomeCarResult.id,
-                        brandName = getSomeCarResult.brandName,
-                        modelName = getSomeCarResult.modelName,
-                        year = getSomeCarResult.year,
-                        engineVolume = getSomeCarResult.engineVolume,
+                        name = getSomeCarResult.name,
                         listUrl = getSomeCarResult.listUrl
                     ),
                     listPosts = listOfPosts.map { post ->
