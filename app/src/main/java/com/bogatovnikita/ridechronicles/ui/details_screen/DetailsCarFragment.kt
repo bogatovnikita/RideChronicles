@@ -2,6 +2,7 @@ package com.bogatovnikita.ridechronicles.ui.details_screen
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -11,6 +12,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bogatovnikita.ridechronicles.R
 import com.bogatovnikita.ridechronicles.adapters.ViewPagerAdapter
 import com.bogatovnikita.ridechronicles.databinding.FragmentDetailsCarBinding
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -42,7 +44,13 @@ class DetailsCarFragment : Fragment(R.layout.fragment_details_car) {
         if (state.isLoaded) {
             viewPagerAdapter.setData(state.someCar.listUrl)
             binding.dotsIndicator.attachTo(binding.viewPagerContainer)
+            binding.headTitle.text = state.someCar.name
+            binding.userAvatar.loadImageFromUrl(
+                state.listPosts.firstOrNull()!!.author.avatar.url
+            )
+            binding.userName.text = state.listPosts.firstOrNull()!!.author.username
         }
+
     }
 
     private fun loaderIsEnable(state: DetailsCarState) {
@@ -54,4 +62,10 @@ class DetailsCarFragment : Fragment(R.layout.fragment_details_car) {
         viewPagerAdapter = ViewPagerAdapter()
         binding.viewPagerContainer.adapter = viewPagerAdapter
     }
+}
+
+fun ImageView.loadImageFromUrl(url: String) {
+    val glide = Glide.with(context)
+        .load(url)
+    glide.into(this)
 }
