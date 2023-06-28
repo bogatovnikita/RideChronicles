@@ -8,20 +8,24 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bogatovnikita.ridechronicles.R
+import com.bogatovnikita.ridechronicles.adapters.ViewPagerAdapter
 import com.bogatovnikita.ridechronicles.databinding.FragmentDetailsCarBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailsCarFragment : Fragment(R.layout.fragment_details_car) {
+
     private val binding: FragmentDetailsCarBinding by viewBinding()
     private val args by navArgs<DetailsCarFragmentArgs>()
     private val viewModel: DetailsCarViewModel by viewModels()
+    private lateinit var viewPagerAdapter: ViewPagerAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.updateState(args.carId)
         initObserver()
+        initViewPagerAdapter()
     }
 
     private fun initObserver() {
@@ -33,6 +37,11 @@ class DetailsCarFragment : Fragment(R.layout.fragment_details_car) {
     }
 
     private fun renderState(state: DetailsCarState) {
+        if (state.isLoaded) viewPagerAdapter.setData(state.listUrl)
+    }
 
+    private fun initViewPagerAdapter() {
+        viewPagerAdapter = ViewPagerAdapter()
+        binding.viewPagerContainer.adapter = viewPagerAdapter
     }
 }
