@@ -22,8 +22,13 @@ class DetailsCarViewModel @Inject constructor(
 
     fun updateState(id: Long) {
         isNotLoaded()
-        viewModelScope.launch {
-            val getSomeCarResult = getSomeCar.getCar(id)
+        viewModelScope.launch(Dispatchers.IO) {
+            val getSomeCarDeferred = async { getSomeCar.getCar(id) }
+            val getListOfPostsDeferred = async { getListOfPosts.getListOfPosts(id) }
+
+            val getSomeCarResult = getSomeCarDeferred.await()
+            val listOfPosts = getListOfPostsDeferred.await()
+
             updateState {
                 it.copy(
                     someCar = CarModel(
@@ -34,27 +39,18 @@ class DetailsCarViewModel @Inject constructor(
                         engineVolume = getSomeCarResult.engineVolume,
                         listUrl = getSomeCarResult.listUrl
                     ),
-                    isLoadedSomeCar = true
-                )
-            }
-        }
-
-        viewModelScope.launch {
-            updateState {
-                it.copy(
-                    listPosts = getListOfPosts.getListOfPosts(id).map { post ->
+                    listPosts = listOfPosts.map { post ->
                         PostModel(
                             id = post.id,
                             text = post.text,
                             author = User(
                                 id = post.author.id,
                                 username = post.author.username,
-                                avatar = Avatar(
-                                    url = post.author.avatar.url
-                                )
+                                avatar = Avatar(post.author.avatar.url)
                             )
                         )
-                    }, isLoadedPosts = true
+                    },
+                    isLoaded = true
                 )
             }
         }
@@ -63,8 +59,7 @@ class DetailsCarViewModel @Inject constructor(
     private fun isNotLoaded() {
         updateState {
             it.copy(
-                isLoadedPosts = false,
-                isLoadedSomeCar = false
+                isLoaded = false
             )
         }
     }

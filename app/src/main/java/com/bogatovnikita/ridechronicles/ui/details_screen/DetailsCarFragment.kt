@@ -37,7 +37,8 @@ class DetailsCarFragment : Fragment(R.layout.fragment_details_car) {
     }
 
     private fun renderState(state: DetailsCarState) {
-        if (state.isLoadedSomeCar && state.isLoadedPosts) viewPagerAdapter.setData(state.someCar.listUrl)
+        if (state.isLoaded) viewPagerAdapter.setData(state.someCar.listUrl)
+
     }
 
     private fun initViewPagerAdapter() {
