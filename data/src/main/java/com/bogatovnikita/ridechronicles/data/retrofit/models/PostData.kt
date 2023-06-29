@@ -15,7 +15,7 @@ data class PostData(
     @SerializedName("comment_count")
     val commentCount: Long,
 
-    val img: String,
+    val img: String? = "",
     val author: User
 )
 
