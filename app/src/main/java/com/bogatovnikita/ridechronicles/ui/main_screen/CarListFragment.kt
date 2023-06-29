@@ -40,30 +40,38 @@ class CarListFragment : Fragment(R.layout.fragment_list_of_cars) {
 
     private fun renderState(state: CarListState) {
         loaderIsEnable(state)
+        pageButtonEnable(state)
+
         binding.numberPage.text = state.page.toString()
+
         if (state.isLoaded) {
             adapter.setData(state.listCars)
         }
-        if (viewModel.screenState.value.page == 1) binding.prevPage.isVisible = false
-        if (viewModel.screenState.value.page == 22) binding.nextPage.isVisible = false
+    }
+
+    private fun pageButtonEnable(state: CarListState) {
+        if (state.page == 1) binding.prevPage.isVisible = false
+        if (state.page == 22) binding.nextPage.isVisible = false
     }
 
     private fun loaderIsEnable(state: CarListState) {
-        binding.recyclerView.isVisible = state.isLoaded
-        binding.loader.isVisible = !state.isLoaded
-        binding.buttonsPageGroup.isVisible = state.isLoaded
+        with(binding) {
+            recyclerView.isVisible = state.isLoaded
+            loader.isVisible = !state.isLoaded
+            buttonsPageGroup.isVisible = state.isLoaded
+        }
     }
 
     private fun initRecyclerView() {
-        adapter = CarListAdapter {
-            findNavController().navigate(
-                CarListFragmentDirections.actionListOfCarsFragmentToDetailsCarFragment(
-                    it
-                )
-            )
-        }
+        adapter = CarListAdapter { navigateUp(it) }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
+    }
+
+    private fun navigateUp(it: Long) {
+        findNavController().navigate(
+            CarListFragmentDirections.actionListOfCarsFragmentToDetailsCarFragment(it)
+        )
     }
 
     private fun initClickListener() {
@@ -72,7 +80,6 @@ class CarListFragment : Fragment(R.layout.fragment_list_of_cars) {
         }
         binding.prevPage.setOnClickListener {
             viewModel.getListOfCar(viewModel.screenState.value.page - 1)
-
         }
     }
 
