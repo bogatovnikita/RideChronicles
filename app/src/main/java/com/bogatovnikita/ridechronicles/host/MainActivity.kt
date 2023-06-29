@@ -1,7 +1,7 @@
 package com.bogatovnikita.ridechronicles.host
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.bogatovnikita.ridechronicles.R
 import dagger.hilt.android.AndroidEntryPoint
 
